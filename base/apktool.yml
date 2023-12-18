@@ -1,0 +1,34 @@
+version: 2.9.0
+apkFileName: base.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+  tag: null
+sdkInfo:
+  minSdkVersion: 20
+  targetSdkVersion: 31
+packageInfo:
+  forcedPackageId: 127
+  renameManifestPackage: null
+versionInfo:
+  versionCode: 1001
+  versionName: 1.0.0
+resourcesAreCompressed: false
+sharedLibrary: false
+sparseResources: false
+unknownFiles:
+  play-services-maps.properties: 8
+  play-services-base.properties: 8
+  kotlin-tooling-metadata.json: 8
+  play-services-tasks.properties: 8
+  DebugProbesKt.bin: 8
+  play-services-basement.properties: 8
+doNotCompress:
+- resources.arsc
+- jpg
+- png
+- assets/flutter_assets/asset/tof3.JPG
+- assets/flutter_assets/asset/tof1.JPG
+- jpeg
+- assets/flutter_assets/asset/tof2.JPG

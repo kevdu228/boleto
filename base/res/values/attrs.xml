@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="activityAction" format="string" />
+    <attr name="activityName" format="string" />
+    <attr name="alpha" format="float" />
+    <attr name="alwaysExpand" format="boolean" />
+    <attr name="ambientEnabled" format="boolean" />
+    <attr name="backgroundColor" format="color" />
+    <attr name="buttonSize" format="reference">
+        <enum name="icon_only" value="2" />
+        <enum name="standard" value="0" />
+        <enum name="wide" value="1" />
+    </attr>
+    <attr name="cameraBearing" format="float" />
+    <attr name="cameraMaxZoomPreference" format="float" />
+    <attr name="cameraMinZoomPreference" format="float" />
+    <attr name="cameraTargetLat" format="float" />
+    <attr name="cameraTargetLng" format="float" />
+    <attr name="cameraTilt" format="float" />
+    <attr name="cameraZoom" format="float" />
+    <attr name="circleCrop" format="boolean" />
+    <attr name="clearTop" format="boolean" />
+    <attr name="colorScheme" format="reference">
+        <enum name="auto" value="2" />
+        <enum name="dark" value="0" />
+        <enum name="light" value="1" />
+    </attr>
+    <attr name="finishPrimaryWithSecondary" format="boolean" />
+    <attr name="finishSecondaryWithPrimary" format="boolean" />
+    <attr name="font" format="reference" />
+    <attr name="fontProviderAuthority" format="string" />
+    <attr name="fontProviderCerts" format="reference" />
+    <attr name="fontProviderFetchStrategy">
+        <enum name="async" value="1" />
+        <enum name="blocking" value="0" />
+    </attr>
+    <attr name="fontProviderFetchTimeout" format="integer">
+        <enum name="forever" value="-1" />
+    </attr>
+    <attr name="fontProviderPackage" format="string" />
+    <attr name="fontProviderQuery" format="string" />
+    <attr name="fontProviderSystemFontFamily" format="string" />
+    <attr name="fontStyle">
+        <enum name="italic" value="1" />
+        <enum name="normal" value="0" />
+    </attr>
+    <attr name="fontVariationSettings" format="string" />
+    <attr name="fontWeight" format="integer" />
+    <attr name="imageAspectRatio" format="float" />
+    <attr name="imageAspectRatioAdjust">
+        <enum name="adjust_height" value="2" />
+        <enum name="adjust_width" value="1" />
+        <enum name="none" value="0" />
+    </attr>
+    <attr name="latLngBoundsNorthEastLatitude" format="float" />
+    <attr name="latLngBoundsNorthEastLongitude" format="float" />
+    <attr name="latLngBoundsSouthWestLatitude" format="float" />
+    <attr name="latLngBoundsSouthWestLongitude" format="float" />
+    <attr name="liteMode" format="boolean" />
+    <attr name="mapId" format="string" />
+    <attr name="mapType">
+        <enum name="hybrid" value="4" />
+        <enum name="none" value="0" />
+        <enum name="normal" value="1" />
+        <enum name="satellite" value="2" />
+        <enum name="terrain" value="3" />
+    </attr>
+    <attr name="nestedScrollViewStyle" format="reference" />
+    <attr name="placeholderActivityName" format="string" />
+    <attr name="primaryActivityName" format="string" />
+    <attr name="queryPatterns" format="reference" />
+    <attr name="scopeUris" format="reference|string" />
+    <attr name="secondaryActivityAction" format="string" />
+    <attr name="secondaryActivityName" format="string" />
+    <attr name="shortcutMatchRequired" format="boolean" />
+    <attr name="splitLayoutDirection">
+        <enum name="locale" value="0" />
+        <enum name="ltr" value="1" />
+        <enum name="rtl" value="2" />
+    </attr>
+    <attr name="splitMinSmallestWidth" format="dimension" />
+    <attr name="splitMinWidth" format="dimension" />
+    <attr name="splitRatio" format="float" />
+    <attr name="ttcIndex" format="integer" />
+    <attr name="uiCompass" format="boolean" />
+    <attr name="uiMapToolbar" format="boolean" />
+    <attr name="uiRotateGestures" format="boolean" />
+    <attr name="uiScrollGestures" format="boolean" />
+    <attr name="uiScrollGesturesDuringRotateOrZoom" format="boolean" />
+    <attr name="uiTiltGestures" format="boolean" />
+    <attr name="uiZoomControls" format="boolean" />
+    <attr name="uiZoomGestures" format="boolean" />
+    <attr name="useViewLifecycle" format="boolean" />
+    <attr name="zOrderOnTop" format="boolean" />
+</resources>
