@@ -1,113 +1,136 @@
+import 'dart:convert';
+
+import 'package:boleto_scan/controller/buy_ticket_controller.dart';
+import 'package:boleto_scan/controller/categorie_controller.dart';
+import 'package:boleto_scan/controller/events_controller.dart';
+import 'package:boleto_scan/controller/user_controller.dart';
+import 'package:boleto_scan/model/user.dart';
+import 'package:boleto_scan/screen/dashboard.dart';
+import 'package:boleto_scan/screen/intro_screen.dart';
+import 'package:boleto_scan/screen/login.dart';
+import 'package:boleto_scan/screen/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:boleto_scan/model/constants.dart';
 
-import 'class/user.dart';
 
-void main() {
-  runApp(const MyApp());
+void main()  {
+
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  
+  
+  runApp(
+    MultiProvider(
+    providers:[
+      
+      ChangeNotifierProvider(
+        create: (context) => UserController()
+        ),
+        
+      ChangeNotifierProvider(
+        create: (context) => EventController()
+        ),
+
+      ChangeNotifierProvider(
+        create: (context)=>CategorieController()
+        ),
+      
+      ChangeNotifierProvider(
+        create: (context) => BuyTicketController()
+        )
+
+      
+    ],
+    child: const MyApp()
+    )
+    );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var constants = Constants();
+  bool splash =true,connected=false,isLoading=true;
+
+  @override
+  void initState() {
+    
+    final provider = Provider.of<UserController>(context, listen: false);
+    initDatas(provider);
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    final provider = Provider.of<UserController>(context);
+    return Consumer<UserController>(
+      
+      builder: (context,value,child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            textTheme: GoogleFonts.montserratTextTheme(
+              Theme.of(context).textTheme
+            ),
+            primarySwatch: Colors.blue,
+          ),
+          home: splash? IntroScreen():Dashboard(),
+        );
+      }
     ); 
   }
-}
+  
+  void initDatas(UserController provider) async{
+    //await constants.del();
+    await constants.lireFicher();
+    var data;
+    var fichers = constants.files;
+    if(fichers.isEmpty){
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+      var log ="{\"connected\":\"false\",\"splash\":\"false\"}";
+      await constants.ecricreFicher(log,"");
+      await constants.lireFicher();
+     
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+    }else{
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  double paddingDefault = 20;
-  User kev = User(id: 0, nom: "nom", prenom: "prenom", password: "password", email: "email", reference: "reference", dateNaissance: DateTime.now(), dateCreation: DateTime.now(), etat: true, gcu: false, ville: "ville", pays: "pays", adresse: "adresse", telephone: "telephone", photoProfil: "photoProfil", photoBack: "photoBack", titreRole: "titreRole", about: "about");
+      await constants.lireFicher();
+       data = json.decode(constants.files[0]) as Map<String, dynamic>;
+      if(data['splash']=='false'){
+        splash = false;
+        
+      };
+      if(data['connected']!='false'){
+        connected = true;
+        await constants.lireFicher();
+       data = json.decode(constants.files[1]) as Map<String, dynamic>;
+       
+        provider.user.editUser(User.fromJson(data));
+        print(provider.user);
+        
+      };
+      
+       
+    
+    }
 
-  void _incrementCounter() {
+    isLoading =false;
+    FlutterNativeSplash.remove();
     setState(() {
       
-      _counter++;
     });
   }
-
-  @override
-  Widget build(BuildContext context) {
-    
-    return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      appBar: PreferredSize(
-      
-        preferredSize: Size.fromHeight(80),
-        
-        child: Padding(
-          padding:  EdgeInsets.all(paddingDefault),
-          child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                      'Welcome Back  !',
-                      ),
-                      Text(
-                  'kevin  bedinade',
-                  ),
-                    ],
-                  ),
-
-
-                ],
-              ),
-
-              CircleAvatar(
-                    radius: 20,
-                    backgroundColor: Colors.amber..shade100,
-                  )
-              
-              
-            ],
-          ),
-        ),
-      ),
-      
-      body: Center(
-        
-        child: Column(
-           
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
-    );
-  }
 }
+
+
+
+

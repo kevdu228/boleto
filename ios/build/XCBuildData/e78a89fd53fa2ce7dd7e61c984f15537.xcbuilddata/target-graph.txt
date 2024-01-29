@@ -1,0 +1,17 @@
+Target dependency graph (7 targets)
+Flutter in Pods, no dependencies
+GoogleMaps in Pods, no dependencies
+google_maps_flutter_ios-google_maps_flutter_ios_privacy in Pods, no dependencies
+google_maps_flutter_ios in Pods, depends on:
+Flutter in Pods (explicit)
+GoogleMaps in Pods (explicit)
+google_maps_flutter_ios-google_maps_flutter_ios_privacy in Pods (explicit)
+path_provider_foundation-path_provider_foundation_privacy in Pods, no dependencies
+path_provider_foundation in Pods, depends on:
+Flutter in Pods (explicit)
+path_provider_foundation-path_provider_foundation_privacy in Pods (explicit)
+Pods-Runner in Pods, depends on:
+Flutter in Pods (explicit)
+GoogleMaps in Pods (explicit)
+google_maps_flutter_ios in Pods (explicit)
+path_provider_foundation in Pods (explicit)
